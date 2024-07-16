@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+		<style>
+			.child {
+				background-color: blueviolet;
+				border: solid;
+				cursor: pointer;
+				padding: 14px;
+				margin: 14px;
+			}
+			.childContainer {
+				background-color: beige;
+				padding: 14px;
+				margin: 14px;
+			}
+			.container {
+				background-color: brown;
+				padding: 14px;
+				margin: 14px;
+			}
+		</style>
+</head>
+<body>
+	<div class="container">
+			<div class="box">I am a box</div>
+			<div class="childContainer">
+				<div class="child">
+					I am a child
+				</div>
+			</span>
+	</div>
+  <button id="btn">this is a button</button>
+  <script>
+    let button = document.getElementById("btn");
+    button.addEventListener("click",(e)=>{
+			console.log(e);
+        document.querySelector(".box").innerHTML = "You were clicked";
+    })
+		document.querySelector(".child").addEventListener("click",(e)=>{
+			e.stopPropagation();
+			alert("child was clicked");
+		})
+		document.querySelector(".container").addEventListener("click",(e)=>{
+			e.stopPropagation();
+			alert("container was clicked");
+		})
+		document.querySelector(".childContainer").addEventListener("click",(e)=>{
+			e.stopPropagation();
+			alert("childContainer was clicked");
+		})
+		function getRandomColor() {
+			let letters = "0123456789ABCDEF";
+			let color = "#";
+			for (i=0; i<6; i++) {
+					//of all the possible 16 letters i will get one of them
+					let index = Math.floor(Math.random()*16);
+					color += letters[index];
+			}
+			return color;
+		}
+		let a = setInterval(()=>{
+			document.querySelector(".child").style.backgroundColor = getRandomColor();
+		},1000)
+
+		clearInterval(a);
+
+		setTimeout(()=>{
+			document.querySelector(".child").style.backgroundColor = getRandomColor();
+		},5000);
+  </script>
+</body>
+</html>
